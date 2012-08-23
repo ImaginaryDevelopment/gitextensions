@@ -1001,6 +1001,11 @@ namespace GitUI
             else if (revision.Guid == SuperprojectCurrentCheckout)
                 rowFont = SuperprojectFont;
 
+            foreColor = PaintRevisionCellColumn(e, column, revision, isRowSelected, foreColor, foreBrush, rowFont);
+        }
+
+        private Color PaintRevisionCellColumn(DataGridViewCellPaintingEventArgs e, int column, GitRevision revision, bool isRowSelected, Color foreColor, Brush foreBrush, System.Drawing.Font rowFont)
+        {
             switch (column)
             {
                 case 1: //Description!!
@@ -1038,13 +1043,13 @@ namespace GitUI
                         if (heads.Count > 0)
                         {
                             heads.Sort((left, right) =>
-                                           {
-                                               if (left.IsTag != right.IsTag)
-                                                   return right.IsTag.CompareTo(left.IsTag);
-                                               if (left.IsRemote != right.IsRemote)
-                                                   return left.IsRemote.CompareTo(right.IsRemote);
-                                               return left.Name.CompareTo(right.Name);
-                                           });
+                            {
+                                if (left.IsTag != right.IsTag)
+                                    return right.IsTag.CompareTo(left.IsTag);
+                                if (left.IsRemote != right.IsRemote)
+                                    return left.IsRemote.CompareTo(right.IsRemote);
+                                return left.Name.CompareTo(right.Name);
+                            });
 
                             foreach (var head in heads)
                             {
@@ -1185,6 +1190,7 @@ namespace GitUI
                     }
                     break;
             }
+            return foreColor;
         }
 
         private void RevisionsCellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
