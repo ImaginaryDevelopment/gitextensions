@@ -150,6 +150,7 @@ namespace GitUI
 
         private bool PushChanges(IWin32Window owner)
         {
+           
             if (PullFromUrl.Checked && string.IsNullOrEmpty(PushDestination.Text))
             {
                 MessageBox.Show(owner, _selectDestinationDirectory.Text);

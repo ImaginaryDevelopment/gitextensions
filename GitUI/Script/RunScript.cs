@@ -75,21 +75,10 @@ namespace GitUI.Script
                 switch (option)
                 {
                     case "{sTag}":
-                        if (selectedTags.Count == 1)
-                            argument = argument.Replace(option, selectedTags[0].Name);
-                        else if (selectedTags.Count != 0)
-                            argument = argument.Replace(option, askToSpecify(selectedTags, "Selected Revision Tag"));
-                        else
-                            argument = argument.Replace(option, "");
+                        argument = HandleSTagOption(argument, selectedTags, option);
                         break;
                     case "{sBranch}":
-                        if (selectedBranches.Count == 1)
-                            argument = argument.Replace(option, selectedBranches[0].Name);
-                        else if (selectedBranches.Count != 0)
-                            argument = argument.Replace(option,
-                                                        askToSpecify(selectedBranches, "Selected Revision Branch"));
-                        else
-                            argument = argument.Replace(option, "");
+                        argument = HandleSBranchOption(argument, selectedBranches, option);
                         break;
                     case "{sLocalBranch}":
                         if (selectedLocalBranches.Count == 1)
@@ -220,6 +209,29 @@ namespace GitUI.Script
             }
 
             FormProcess.ShowDialog(null, command, argument);
+        }
+
+        private static string HandleSBranchOption(string argument, List<GitHead> selectedBranches, string option)
+        {
+            if (selectedBranches.Count == 1)
+                argument = argument.Replace(option, selectedBranches[0].Name);
+            else if (selectedBranches.Count != 0)
+                argument = argument.Replace(option,
+                                            askToSpecify(selectedBranches, "Selected Revision Branch"));
+            else
+                argument = argument.Replace(option, "");
+            return argument;
+        }
+
+        private static string HandleSTagOption(string argument, List<GitHead> selectedTags, string option)
+        {
+            if (selectedTags.Count == 1)
+                argument = argument.Replace(option, selectedTags[0].Name);
+            else if (selectedTags.Count != 0)
+                argument = argument.Replace(option, askToSpecify(selectedTags, "Selected Revision Tag"));
+            else
+                argument = argument.Replace(option, "");
+            return argument;
         }
 
         private static GitRevision CalculateSelectedRevision(RevisionGrid RevisionGrid, List<GitHead> selectedRemoteBranches,
