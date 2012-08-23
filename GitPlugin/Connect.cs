@@ -294,29 +294,7 @@ namespace GitPlugin
 
         public void OnDisconnection(ext_DisconnectMode disconnectMode, ref Array custom)
         {
-            //if (disconnectMode == ext_DisconnectMode.ext_dm_HostShutdown
-            //    || disconnectMode == ext_DisconnectMode.ext_dm_UserClosed)
-            //{
-            //    _gitPlugin.DeleteCommands();
-            //    _gitPlugin.DeleteCommandBar(GitToolBarName);
-            //    //Place the command on the tools menu.
-            //    //Find the MenuBar command bar, which is the top-level command bar holding all the main menu items:
-            //    var menuBarCommandBar = ((CommandBars)_applicationObject.CommandBars)["MenuBar"];
-
-
-            //    CommandBarControl toolsControl;
-            //    try
-            //    {
-            //        toolsControl = menuBarCommandBar.Controls["Git"];
-            //        if (toolsControl != null)
-            //        {
-            //            toolsControl.Delete();
-            //        }
-            //    }
-            //    catch
-            //    {
-            //    }
-            //}
+          
         }
 
         public void OnAddInsUpdate(ref Array custom)
