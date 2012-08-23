@@ -78,9 +78,9 @@ namespace GitPlugin.Git
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                //ignore
+                Debug.WriteLine("Caught exception"+ex.ToString());
             }
 
             return string.Empty;
@@ -108,16 +108,19 @@ namespace GitPlugin.Git
 
         private static bool ValidWorkingDir(string dir)
         {
+            Func<string,bool> dirExists=s=>Directory.Exists(System.IO.Path.Combine(dir,s));
+            Func<string, bool> fileExists = f => File.Exists(System.IO.Path.Combine(dir, f));
+
             if (string.IsNullOrEmpty(dir))
                 return false;
 
-            if (Directory.Exists(dir + "\\" + ".git") || File.Exists(dir + "\\" + ".git"))
+            if (dirExists(".git") || fileExists( ".git"))
                 return true;
 
             return !dir.Contains(".git") &&
-                   Directory.Exists(dir + "\\" + "info") &&
-                   Directory.Exists(dir + "\\" + "objects") &&
-                   Directory.Exists(dir + "\\" + "refs");
+                   dirExists( "info") &&
+                   dirExists( "objects") &&
+                   dirExists( "refs");
         }
 
         private static string GetRegistryValue(RegistryKey root, string subkey, string key)
@@ -127,7 +130,7 @@ namespace GitPlugin.Git
                 RegistryKey rk;
                 rk = root.OpenSubKey(subkey, false);
 
-                string value = "";
+                string value = string.Empty;
 
                 if (rk != null && rk.GetValue(key) is string)
                 {
@@ -142,7 +145,7 @@ namespace GitPlugin.Git
             {
                 MessageBox.Show("GitExtensions has insufficient permisions to check the registry.");
             }
-            return "";
+            return string.Empty;
         }
 
         private static string GetGitExRegValue(string key)
@@ -188,8 +191,9 @@ namespace GitPlugin.Git
                 process.Start();
                 //process.WaitForExit();
             }
-            catch
+            catch (Exception ex)
             {
+                Debug.WriteLine("Failed to run cmd:" + cmd + ";" + ex.ToString());
             }
         }
 
