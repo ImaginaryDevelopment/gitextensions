@@ -975,6 +975,79 @@ namespace GitUI
             wa.Clip = newClip;
             wa.Clear(Color.Transparent);
 
+            DrawItemLoop(wa, row, top);
+
+            // Reset the clip region
+            wa.Clip = oldClip;
+            DrawGraphNode(wa, row);
+            return true;
+        }
+
+        private void DrawGraphNode(Graphics wa, Graph.ILaneRow row)
+        {
+            // Draw node
+            var nodeRect = new Rectangle
+                (
+                wa.RenderingOrigin.X + (LANE_WIDTH - NODE_DIMENSION) / 2 + row.NodeLane * LANE_WIDTH,
+                wa.RenderingOrigin.Y + (rowHeight - NODE_DIMENSION) / 2,
+                NODE_DIMENSION,
+                NODE_DIMENSION
+                );
+
+            Brush nodeBrush;
+            bool drawBorder = Settings.BranchBorders;
+            List<Color> nodeColors = GetJunctionColors(row.Node.Ancestors);
+            if (nodeColors.Count == 1)
+            {
+                nodeBrush = new SolidBrush(nodeColors[0]);
+                if (nodeColors[0] == nonRelativeColor) drawBorder = false;
+            }
+            else
+            {
+                nodeBrush = new LinearGradientBrush(nodeRect, nodeColors[0], nodeColors[1],
+                                                    LinearGradientMode.Horizontal);
+                if (nodeColors[0] == nonRelativeColor && nodeColors[1] == Color.LightGray) drawBorder = false;
+            }
+
+            if (filterMode == FilterType.Highlight && row.Node.IsFiltered)
+            {
+                Rectangle highlightRect = nodeRect;
+                highlightRect.Inflate(2, 3);
+                wa.FillRectangle(Brushes.Yellow, highlightRect);
+                wa.DrawRectangle(new Pen(Brushes.Black), highlightRect);
+            }
+
+            if (row.Node.Data == null)
+            {
+                wa.FillEllipse(Brushes.White, nodeRect);
+                wa.DrawEllipse(new Pen(Color.Red, 2), nodeRect);
+            }
+            else if (row.Node.IsActive)
+            {
+                wa.FillRectangle(nodeBrush, nodeRect);
+                nodeRect.Inflate(1, 1);
+                wa.DrawRectangle(new Pen(Color.Black, 3), nodeRect);
+            }
+            else if (row.Node.IsSpecial)
+            {
+                wa.FillRectangle(nodeBrush, nodeRect);
+                if (drawBorder)
+                {
+                    wa.DrawRectangle(new Pen(Color.Black, 1), nodeRect);
+                }
+            }
+            else
+            {
+                wa.FillEllipse(nodeBrush, nodeRect);
+                if (drawBorder)
+                {
+                    wa.DrawEllipse(new Pen(Color.Black, 1), nodeRect);
+                }
+            }
+        }
+
+        private void DrawItemLoop(Graphics wa, Graph.ILaneRow row, int top)
+        {
             for (int r = 0; r < 2; r++)
                 for (int lane = 0; lane < row.Count; lane++)
                 {
@@ -1017,110 +1090,51 @@ namespace GitUI
                             if (curColors[0] == nonRelativeColor && curColors[1] == nonRelativeColor) drawBorder = false;
                         }
 
-                        for (int i = drawBorder ? 0 : 2; i < 3; i++)
-                        {
-                            Pen penLine;
-                            if (i == 0)
-                            {
-                                penLine = new Pen(new SolidBrush(Color.White), LANE_LINE_WIDTH + 2);
-                            }
-                            else if (i == 1)
-                            {
-                                penLine = new Pen(new SolidBrush(Color.Black), LANE_LINE_WIDTH + 1);
-                            }
-                            else
-                            {
-                                penLine = new Pen(brushLineColor, LANE_LINE_WIDTH);
-                            }
-
-                            if (laneInfo.ConnectLane == lane)
-                            {
-                                wa.DrawLine
-                                    (
-                                        penLine,
-                                        new Point(mid, top - 1),
-                                        new Point(mid, top + rowHeight + 2)
-                                    );
-                            }
-                            else
-                            {
-                                wa.DrawBezier
-                                    (
-                                        penLine,
-                                        new Point(mid, top - 1),
-                                        new Point(mid, top + rowHeight + 2),
-                                        new Point(mid + (laneInfo.ConnectLane - lane) * LANE_WIDTH, top - 1),
-                                        new Point(mid + (laneInfo.ConnectLane - lane) * LANE_WIDTH, top + rowHeight + 2)
-                                    );
-                            }
-                        }
+                        laneInfo = DrawPenLoop(wa, top, lane, mid, laneInfo, brushLineColor, drawBorder);
                     }
                 }
+        }
 
-            // Reset the clip region
-            wa.Clip = oldClip;
+        private Graph.LaneInfo DrawPenLoop(Graphics wa, int top, int lane, int mid, Graph.LaneInfo laneInfo, Brush brushLineColor, bool drawBorder)
+        {
+            for (int i = drawBorder ? 0 : 2; i < 3; i++)
             {
-                // Draw node
-                var nodeRect = new Rectangle
-                    (
-                    wa.RenderingOrigin.X + (LANE_WIDTH - NODE_DIMENSION) / 2 + row.NodeLane * LANE_WIDTH,
-                    wa.RenderingOrigin.Y + (rowHeight - NODE_DIMENSION) / 2,
-                    NODE_DIMENSION,
-                    NODE_DIMENSION
-                    );
-
-                Brush nodeBrush;
-                bool drawBorder = Settings.BranchBorders;
-                List<Color> nodeColors = GetJunctionColors(row.Node.Ancestors);
-                if (nodeColors.Count == 1)
+                Pen penLine;
+                if (i == 0)
                 {
-                    nodeBrush = new SolidBrush(nodeColors[0]);
-                    if (nodeColors[0] == nonRelativeColor) drawBorder = false;
+                    penLine = new Pen(new SolidBrush(Color.White), LANE_LINE_WIDTH + 2);
+                }
+                else if (i == 1)
+                {
+                    penLine = new Pen(new SolidBrush(Color.Black), LANE_LINE_WIDTH + 1);
                 }
                 else
                 {
-                    nodeBrush = new LinearGradientBrush(nodeRect, nodeColors[0], nodeColors[1],
-                                                        LinearGradientMode.Horizontal);
-                    if (nodeColors[0] == nonRelativeColor && nodeColors[1] == Color.LightGray) drawBorder = false;
+                    penLine = new Pen(brushLineColor, LANE_LINE_WIDTH);
                 }
 
-                if (filterMode == FilterType.Highlight && row.Node.IsFiltered)
+                if (laneInfo.ConnectLane == lane)
                 {
-                    Rectangle highlightRect = nodeRect;
-                    highlightRect.Inflate(2, 3);
-                    wa.FillRectangle(Brushes.Yellow, highlightRect);
-                    wa.DrawRectangle(new Pen(Brushes.Black), highlightRect);
-                }
-
-                if (row.Node.Data == null)
-                {
-                    wa.FillEllipse(Brushes.White, nodeRect);
-                    wa.DrawEllipse(new Pen(Color.Red, 2), nodeRect);
-                }
-                else if (row.Node.IsActive)
-                {
-                    wa.FillRectangle(nodeBrush, nodeRect);
-                    nodeRect.Inflate(1, 1);
-                    wa.DrawRectangle(new Pen(Color.Black, 3), nodeRect);
-                }
-                else if (row.Node.IsSpecial)
-                {
-                    wa.FillRectangle(nodeBrush, nodeRect);
-                    if (drawBorder)
-                    {
-                        wa.DrawRectangle(new Pen(Color.Black, 1), nodeRect);
-                    }
+                    wa.DrawLine
+                        (
+                            penLine,
+                            new Point(mid, top - 1),
+                            new Point(mid, top + rowHeight + 2)
+                        );
                 }
                 else
                 {
-                    wa.FillEllipse(nodeBrush, nodeRect);
-                    if (drawBorder)
-                    {
-                        wa.DrawEllipse(new Pen(Color.Black, 1), nodeRect);
-                    }
+                    wa.DrawBezier
+                        (
+                            penLine,
+                            new Point(mid, top - 1),
+                            new Point(mid, top + rowHeight + 2),
+                            new Point(mid + (laneInfo.ConnectLane - lane) * LANE_WIDTH, top - 1),
+                            new Point(mid + (laneInfo.ConnectLane - lane) * LANE_WIDTH, top + rowHeight + 2)
+                        );
                 }
             }
-            return true;
+            return laneInfo;
         }
 
         private void dataGrid_Resize(object sender, EventArgs e)

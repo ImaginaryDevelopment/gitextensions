@@ -104,42 +104,13 @@ namespace GitUI
                 }
             }
 
-            string rev1 = "";
-            string rev2 = "";
+
             string result = "";
 
             var revisions = RevisionGrid.GetSelectedRevisions();
             if (revisions.Count > 0)
-            {
-                if (revisions.Count == 1)
-                {
-                    var parents = revisions[0].ParentGuids;
-                    rev1 = parents.Length > 0 ? parents[0] : "";
-                    rev2 = revisions[0].Guid;
-                    result = Settings.Module.FormatPatch(rev1, rev2, savePatchesToDir);
-                }
-                else if (revisions.Count == 2)
-                {
-                    var parents = revisions[0].ParentGuids;
-                    rev1 = parents.Length > 0 ? parents[0] : "";
-                    rev2 = revisions[1].Guid;
-                    result = Settings.Module.FormatPatch(rev1, rev2, savePatchesToDir);
-                }
-                else if (revisions.Count > 2)
-                {
-                    int n = 0;
-                    foreach (GitRevision revision in revisions)
-                    {
-                        n++;
-                        var parents = revision.ParentGuids;
-                        rev1 = parents.Length > 0 ? parents[0] : "";
-                        rev2 = revision.Guid;
-                        result += Settings.Module.FormatPatch(rev1, rev2, savePatchesToDir, n);
-                    }
-                }
-            }
+                HandlePatchRevisions(savePatchesToDir, ref result, revisions);
             else
-                if (string.IsNullOrEmpty(rev1) || string.IsNullOrEmpty(rev2))
                 {
                     MessageBox.Show(this, _twoRevisionsNeededText.Text, _twoRevisionsNeededCaption.Text);
                     return;
@@ -163,6 +134,38 @@ namespace GitUI
 
             MessageBox.Show(this, result, _patchResultCaption.Text);
             Close();
+        }
+
+        private static void HandlePatchRevisions(string savePatchesToDir, ref string result, System.Collections.Generic.List<GitRevision> revisions)
+        {
+            string rev1;
+            string rev2;
+            if (revisions.Count == 1)
+            {
+                var parents = revisions[0].ParentGuids;
+                rev1 = parents.Length > 0 ? parents[0] : "";
+                rev2 = revisions[0].Guid;
+                result = Settings.Module.FormatPatch(rev1, rev2, savePatchesToDir);
+            }
+            else if (revisions.Count == 2)
+            {
+                var parents = revisions[0].ParentGuids;
+                rev1 = parents.Length > 0 ? parents[0] : "";
+                rev2 = revisions[1].Guid;
+                result = Settings.Module.FormatPatch(rev1, rev2, savePatchesToDir);
+            }
+            else if (revisions.Count > 2)
+            {
+                int n = 0;
+                foreach (GitRevision revision in revisions)
+                {
+                    n++;
+                    var parents = revision.ParentGuids;
+                    rev1 = parents.Length > 0 ? parents[0] : "";
+                    rev2 = revision.Guid;
+                    result += Settings.Module.FormatPatch(rev1, rev2, savePatchesToDir, n);
+                }
+            }
         }
 
         private bool SendMail(string dir)

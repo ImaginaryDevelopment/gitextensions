@@ -145,22 +145,7 @@ namespace GitUI
 
             InitializeComponent();
 
-            Loading.Image = Properties.Resources.loadingpanel;
-
-            splitRight.Panel2MinSize = 130;
-            Translate();
-
-            SolveMergeconflicts.Font = new Font(SystemFonts.MessageBoxFont, FontStyle.Bold);
-
-            SelectedDiff.ExtraDiffArgumentsChanged += SelectedDiffExtraDiffArgumentsChanged;
-
-            closeDialogAfterEachCommitToolStripMenuItem.Checked = Settings.CloseCommitDialogAfterCommit;
-            closeDialogAfterAllFilesCommittedToolStripMenuItem.Checked = Settings.CloseCommitDialogAfterLastCommit;
-            refreshDialogOnFormFocusToolStripMenuItem.Checked = Settings.RefreshCommitDialogOnFormFocus;
-
-            Unstaged.SetNoFilesText(_noUnstagedChanges.Text);
-            Staged.SetNoFilesText(_noStagedChanges.Text);
-            Message.WatermarkText = _enterCommitMessageHint.Text;
+            FormCommitInialize();
 
             _commitKind = commitKind;
             _editedCommit = editedCommit;
@@ -182,6 +167,26 @@ namespace GitUI
             Hotkeys = HotkeySettingsManager.LoadHotkeys(HotkeySettingsName);
 
             SelectedDiff.ContextMenuOpening += SelectedDiff_ContextMenuOpening;
+        }
+
+        private void FormCommitInialize()
+        {
+            Loading.Image = Properties.Resources.loadingpanel;
+
+            splitRight.Panel2MinSize = 130;
+            Translate();
+
+            SolveMergeconflicts.Font = new Font(SystemFonts.MessageBoxFont, FontStyle.Bold);
+
+            SelectedDiff.ExtraDiffArgumentsChanged += SelectedDiffExtraDiffArgumentsChanged;
+
+            closeDialogAfterEachCommitToolStripMenuItem.Checked = Settings.CloseCommitDialogAfterCommit;
+            closeDialogAfterAllFilesCommittedToolStripMenuItem.Checked = Settings.CloseCommitDialogAfterLastCommit;
+            refreshDialogOnFormFocusToolStripMenuItem.Checked = Settings.RefreshCommitDialogOnFormFocus;
+
+            Unstaged.SetNoFilesText(_noUnstagedChanges.Text);
+            Staged.SetNoFilesText(_noStagedChanges.Text);
+            Message.WatermarkText = _enterCommitMessageHint.Text;
         }
 
         void SelectedDiff_ContextMenuOpening(object sender, System.ComponentModel.CancelEventArgs e)
