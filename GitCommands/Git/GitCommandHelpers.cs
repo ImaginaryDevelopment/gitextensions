@@ -867,9 +867,9 @@ namespace GitCommands
                      fileNameOnly = fileNameOnly.Contains(System.IO.Path.AltDirectorySeparatorChar) ? fileNameOnly.Substring(fileNameOnly.LastIndexOf(System.IO.Path.AltDirectorySeparatorChar)) : fileNameOnly;
 
                      var nextFile = files.Where((f, i) => i != n && f.EndsWith(fileNameOnly)).FirstOrDefault();
-                     if (nextFile != null && nextFile.Length > 2 && nextFile[1] == ' ')
+                     if (nextFile != null && nextFile.TrimStart().Length > 2 && nextFile.TrimStart()[1] == ' ')
                      {
-                         nextFile = nextFile.Substring(2);
+                         nextFile = nextFile.TrimStart().Substring(2).Trim();
                          gitItemStatusY.OldName = nextFile;
                      }
                      Debug.Assert(gitItemStatusY != null);
