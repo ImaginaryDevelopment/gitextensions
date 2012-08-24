@@ -126,7 +126,7 @@ namespace GitCommands
                 return null;
             }
 
-            CommitData commitInformation = CreateFromFormatedData(info);
+            CommitData commitInformation = CreateFromFormattedData(info);
 
             return commitInformation;
         }
@@ -139,7 +139,7 @@ namespace GitCommands
         /// </summary>
         /// <param name="data">Formated commit data from git.</param>
         /// <returns>CommitData object populated with parsed info from git string.</returns>
-        public static CommitData CreateFromFormatedData(string data)
+        public static CommitData CreateFromFormattedData(string data)
         {
             if (data == null)
                 throw new ArgumentNullException("Data");

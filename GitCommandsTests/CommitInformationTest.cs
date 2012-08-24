@@ -21,9 +21,68 @@ namespace GitCommandsTests
     [TestClass]
     public class CommitInformationTest
     {
+        [TestMethod]
+        public void TestGetHeader()
+        {
+            var sampleInput = @"commit f460a6660725e99841a73344d61703846038e001
+Author: Brando <brandon.d'imperio@payspan.com>
+Date:   Fri Aug 24 14:03:17 2012 -0400
+
+    refactoring/organization of the ui project
+";
+            var cd = CommitData.CreateFromFormattedData(sampleInput);
+
+        }
+
 
         [TestMethod]
-        public void CanCreateCommitInformationFromFormatedData()
+        public void CanCreateCommitInformationFromFormattedDataApostropheInEmail()
+        {
+            var commitGuid = Guid.NewGuid();
+            var treeGuid = Guid.NewGuid();
+            var parentGuid1 = Guid.NewGuid();
+            var parentGuid2 = Guid.NewGuid();
+            var authorTime = DateTime.UtcNow.AddDays(-3);
+            var commitTime = DateTime.UtcNow.AddDays(-2);
+            var authorUnixTime = (int)(authorTime - new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds;
+            var commitUnixTime = (int)(commitTime - new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds;
+
+            var rawData = commitGuid + "\n" +
+                          treeGuid + "\n" +
+                          parentGuid1 + " " + parentGuid2 + "\n" +
+                          "John D'oe (Acme Inc) <John.D'oe@test.com>\n" +
+                          authorUnixTime + "\n" +
+                          "Jane D'oe (Acme Inc) <Jane.D'oe@test.com>\n" +
+                          commitUnixTime + "\n" +
+                          "\n" +
+                          "\tI made a really neato change.\n\n" +
+                          "Notes (p4notes):\n" +
+                          "\tP4@547123";
+
+            var expectedHeader = "Author:\t\t<a href='mailto:John.D&#39;oe@test.com'>John D'oe (Acme Inc) &lt;John.D'oe@test.com&gt;</a>" + Environment.NewLine +
+                                 "Author date:\t3 days ago (" + authorTime.ToLocalTime().ToString("ddd MMM dd HH':'mm':'ss yyyy") + ")" + Environment.NewLine +
+                                 "Committer:\t<a href='mailto:John.D&#39;oe@test.com'>Jane Doe (Acme Inc) &lt;Jane.Doe@test.com&gt;</a>" + Environment.NewLine +
+                                 "Commit date:\t2 days ago (" + commitTime.ToLocalTime().ToString("ddd MMM dd HH':'mm':'ss yyyy") + ")" + Environment.NewLine +
+                                 "Commit hash:\t" + commitGuid;
+
+            var expectedBody = "\n\nI made a really neato change." + Environment.NewLine + Environment.NewLine +
+                               "Notes (p4notes):" + Environment.NewLine +
+                               "\tP4@547123\n\n";
+
+            var commitData = CommitData.CreateFromFormattedData(rawData);
+            var commitInformation = CommitInformation.GetCommitInfo(commitData);
+            var expectedLines = expectedHeader.SplitLines();
+            var actualLines=commitInformation.Header.SplitLines();
+            Assert.AreEqual(expectedLines.Count(),actualLines.Count());
+            foreach (var l in expectedLines.Zip(actualLines,(expected,actual)=>new{expected,actual}))
+            {
+                Assert.AreEqual(l.expected, l.actual);
+            }
+            Assert.AreEqual(expectedHeader, commitInformation.Header);
+            Assert.AreEqual(expectedBody, commitInformation.Body);
+        }
+        [TestMethod]
+        public void CanCreateCommitInformationFromFormattedData()
         {
             var commitGuid = Guid.NewGuid();
             var treeGuid = Guid.NewGuid();
@@ -56,7 +115,7 @@ namespace GitCommandsTests
                                "Notes (p4notes):" + Environment.NewLine +
                                "\tP4@547123\n\n";
 
-            var commitData = CommitData.CreateFromFormatedData(rawData);
+            var commitData = CommitData.CreateFromFormattedData(rawData);
             var commitInformation = CommitInformation.GetCommitInfo(commitData);
             
             Assert.AreEqual(expectedHeader,commitInformation.Header);
