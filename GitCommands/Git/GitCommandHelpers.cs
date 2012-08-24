@@ -804,7 +804,7 @@ namespace GitCommands
             }
 
             // Doesn't work with removed submodules
-            IList<string> Submodules = Settings.Module.GetSubmodulesLocalPathes();
+            IList<string> Submodules = Settings.Module.GetSubmodulesLocalPaths();
 
             //Split all files on '\0' (WE NEED ALL COMMANDS TO BE RUN WITH -z! THIS IS ALSO IMPORTANT FOR ENCODING ISSUES!)
             var files = trimmedStatus.Split(new char[] { '\0' }, StringSplitOptions.RemoveEmptyEntries);
@@ -862,6 +862,7 @@ namespace GitCommands
                 }
                 else if (y == '?')
                 {
+                    
                      gitItemStatusY = GitItemStatusFromStatusCharacter(fileName, y);
                      var fileNameOnly = gitItemStatusY.Name.Contains(System.IO.Path.DirectorySeparatorChar) ? gitItemStatusY.Name.Substring(gitItemStatusY.Name.LastIndexOf(System.IO.Path.DirectorySeparatorChar)) : gitItemStatusY.Name;
                      fileNameOnly = fileNameOnly.Contains(System.IO.Path.AltDirectorySeparatorChar) ? fileNameOnly.Substring(fileNameOnly.LastIndexOf(System.IO.Path.AltDirectorySeparatorChar)) : fileNameOnly;
@@ -871,6 +872,7 @@ namespace GitCommands
                      {
                          nextFile = nextFile.TrimStart().Substring(2).Trim();
                          gitItemStatusY.OldName = nextFile;
+                         gitItemStatusY = GitItemStatusFromCopyRename(fromDiff, nextFile, fileName, 'R', status);
                      }
                      Debug.Assert(gitItemStatusY != null);
                     //string nextFile = files.FirstOrDefault(f=>);

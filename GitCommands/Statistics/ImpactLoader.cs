@@ -96,7 +96,7 @@ namespace GitCommands.Statistics
 
             if (ShowSubmodules)
             {
-                IList<string> submodules = Settings.Module.GetSubmodulesLocalPathes();
+                IList<string> submodules = Settings.Module.GetSubmodulesLocalPaths();
                 GitModule submodule = new GitModule();
                 foreach (var submoduleName in submodules)
                 {

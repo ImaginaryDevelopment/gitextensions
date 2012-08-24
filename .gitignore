@@ -42,3 +42,7 @@ GitPlugin/Properties/Resources.resources
 test-results/*
 GitCommandsTests/test-results/*
 /!runTests.bat
+*.vsp
+*.psess
+UpgradeLog.htm
+UpgradeLog.XML

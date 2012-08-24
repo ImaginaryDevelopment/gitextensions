@@ -108,7 +108,7 @@ namespace GitCommands
         /// This is a faster function to get the names of all submodules then the 
         /// GetSubmodules() function. The command @git submodule is very slow.
         /// </summary>
-        public IList<string> GetSubmodulesLocalPathes()
+        public IList<string> GetSubmodulesLocalPaths()
         {
             var configFile = GetSubmoduleConfigFile();
             return configFile.GetConfigSections().Select(configSection => configSection.GetPathValue("path").Trim()).ToList();
@@ -1832,7 +1832,11 @@ namespace GitCommands
             var args = string.Concat("diff ", extraDiffArguments, " -- ", fileName);
             if (staged)
                 args = string.Concat("diff -M -C --cached", extraDiffArguments, " -- ", fileName, " ", oldFileName);
-
+            else if (oldFileName.IsNullOrEmpty() == false && oldFileName != fileName)
+            {
+                args = string.Concat("diff ", extraDiffArguments, " HEAD:", oldFileName, " ", fileName);
+                
+            }
             String result = RunGitCmd(args, Settings.LosslessEncoding);
             var patchManager = new PatchManager();
             patchManager.LoadPatch(result, false, encoding);
