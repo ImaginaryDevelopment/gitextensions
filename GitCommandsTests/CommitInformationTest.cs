@@ -55,6 +55,7 @@ namespace GitCommandsTests
         [TestMethod]
         public void CanCreateCommitInformationHeaderFromFormattedDataRefactorVsLegacy()
         {
+            
             var commitGuid = Guid.NewGuid();
             var treeGuid = Guid.NewGuid();
             var parentGuid1 = Guid.NewGuid();
@@ -64,18 +65,19 @@ namespace GitCommandsTests
             var authorUnixTime = (int)(authorTime - new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds;
             var commitUnixTime = (int)(commitTime - new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds;
             Func<string, string, string> generateRawLine = (n, email) =>
-               String.Format("{0} <{1}>\n", n, email);
+               String.Format("{0} <{1}>", n, email);
             var aName = "John Doe (Acme Inc)";
             var aMail = "John.Doe@test.com";
             var cName = "Jane Doe (Acme Inc)";
             var cMail = "Jane.Doe@test.com";
+           // var raw = BuildRawForHeader(aName, aMail, authorTime, cName, cMail, commitTime, commitGuid);
 
-            var rawData = commitGuid + "\n" +
+            var rawData = commitGuid + "\n"+
                           treeGuid + "\n" +
-                          parentGuid1 + " " + parentGuid2 + "\n" +
-                           generateRawLine(aName, aMail) +
-                          authorUnixTime + "\n" +
-                          generateRawLine(cName, cMail) +
+                          parentGuid1 + " " + parentGuid2+ "\n"+
+                           generateRawLine(aName, aMail) + "\n" +
+                          authorUnixTime + Environment.NewLine +
+                          generateRawLine(cName, cMail) + "\n" +
                           commitUnixTime + "\n" +
                           "\n" +
                           "\tI made a really neato change.\n\n" +
@@ -84,18 +86,8 @@ namespace GitCommandsTests
 
 
             var expectedHeader = CommitData.CreateFromFormattedData(rawData).GetHeader();
-            var actualHeader = CommitData.GenerateHeader("John Doe (Acme Inc)", "John Doe (Acme Inc) <John.Doe@test.com>", "3 days ago", authorTime, "Jane Doe (Acme Inc)", "Jane Doe (Acme Inc) <Jane.Doe@test.com>", "2 days ago", commitTime, commitGuid);
-
-            var expectedLines = expectedHeader.SplitLines();
-            var actualLines = actualHeader.SplitLines();
-            Assert.AreEqual(expectedLines.Count(), actualLines.Count());
-            foreach (var l in expectedLines.Zip(actualLines, (expected, actual) => new { expected, actual }))
-            {
-                Assert.AreEqual(l.expected.Length, l.actual.Length, l.actual.Replace("\t", "\\t"));
-                Assert.AreEqual(l.expected, l.actual);
-
-            }
-            Assert.AreEqual(expectedHeader, actualHeader);
+            var actualHeader = CommitData.GenerateHeader(aName, generateRawLine(aName,aMail), "3 days ago", authorTime, cName, generateRawLine(cName,cMail), "2 days ago", commitTime, commitGuid);
+            AssertTextBlocksEqual(expectedHeader, actualHeader);
 
         }
 
@@ -138,17 +130,7 @@ namespace GitCommandsTests
 
 
             var header = CommitData.GenerateHeader("John Doe (Acme Inc)", "John Doe (Acme Inc) <John.Doe@test.com>", "3 days ago", authorTime, "Jane Doe (Acme Inc)", "Jane Doe (Acme Inc) <Jane.Doe@test.com>", "2 days ago", commitTime, commitGuid);
-
-            var expectedLines = expectedHeader.SplitLines();
-            var actualLines = header.SplitLines();
-            Assert.AreEqual(expectedLines.Count(), actualLines.Count());
-            foreach (var l in expectedLines.Zip(actualLines, (expected, actual) => new { expected, actual }))
-            {
-                Assert.AreEqual(l.expected.Length, l.actual.Length, l.actual.Replace("\t", "\\t"));
-                Assert.AreEqual(l.expected, l.actual);
-
-            }
-            Assert.AreEqual(expectedHeader, header);
+            AssertTextBlocksEqual(expectedHeader, header);
             
 
         }
@@ -187,16 +169,7 @@ namespace GitCommandsTests
 
             var header = CommitData.GenerateHeader("John Doe (Acme Inc)", "John Doe (Acme Inc) <John.Doe@test.com>", "3 days ago", authorTime, "Jane Doe (Acme Inc)", "Jane Doe (Acme Inc) <Jane.Doe@test.com>", "2 days ago", commitTime, commitGuid);
 
-            var expectedLines = expectedHeader.SplitLines();
-            var actualLines = header.SplitLines();
-            Assert.AreEqual(expectedLines.Count(), actualLines.Count());
-            foreach (var l in expectedLines.Zip(actualLines,(expected,actual)=>new{expected,actual}))
-            {
-                Assert.AreEqual(l.expected.Length, l.actual.Length,l.actual.Replace("\t","\\t"));
-                Assert.AreEqual(l.expected, l.actual);
-                
-            }
-            Assert.AreEqual(expectedHeader, header);
+            AssertTextBlocksEqual(expectedHeader, header);
            
         }
 
@@ -227,17 +200,7 @@ namespace GitCommandsTests
            
             var expectedHeader = CommitData.CreateFromFormattedData(rawData).GetHeader();
             var actualHeader = CommitData.GenerateHeader("John Doe (Acme Inc)", "John Doe (Acme Inc) <John.Doe@test.com>", "3 days ago", authorTime, "Jane Doe (Acme Inc)", "Jane Doe (Acme Inc) <Jane.Doe@test.com>", "2 days ago", commitTime, commitGuid);
-
-            var expectedLines = expectedHeader.SplitLines();
-            var actualLines = actualHeader.SplitLines();
-            Assert.AreEqual(expectedLines.Count(), actualLines.Count());
-            foreach (var l in expectedLines.Zip(actualLines, (expected, actual) => new { expected, actual }))
-            {
-                Assert.AreEqual(l.expected.Length, l.actual.Length, l.actual.Replace("\t", "\\t"));
-                Assert.AreEqual(l.expected, l.actual);
-
-            }
-            Assert.AreEqual(expectedHeader, actualHeader);
+            AssertTextBlocksEqual(expectedHeader, actualHeader);
 
         }
         [TestMethod]
@@ -276,8 +239,9 @@ namespace GitCommandsTests
 
             var commitData = CommitData.CreateFromFormattedData(rawData);
             var commitInformation = CommitInformation.GetCommitInfo(commitData);
-            
+            AssertTextBlocksEqual(expectedHeader, commitInformation.Header);
             Assert.AreEqual(expectedHeader,commitInformation.Header);
+            AssertTextBlocksEqual(expectedBody, commitInformation.Body);
             Assert.AreEqual(expectedBody, commitInformation.Body);
         }
 
@@ -303,7 +267,8 @@ namespace GitCommandsTests
             Assert.IsNotNull(actualResult);
             Assert.IsTrue(!actualResult.Any());
         }
-
+        #region Helpers
+        
         void AssertTextBlocksEqual(string expectedBlock, string actualBlock)
         {
             var expectedLines = expectedBlock.SplitLines();
@@ -311,11 +276,12 @@ namespace GitCommandsTests
             Assert.AreEqual(expectedLines.Count(), actualLines.Count());
             foreach (var l in expectedLines.Zip(actualLines, (expected, actual) => new { expected, actual }).Select((r, lineNumber) => new { lineNumber, r.actual, r.expected }))
             {
-                Assert.AreEqual(l.expected.Length, l.actual.Length, l.actual.Replace("\t", "\\t"));
-                for (int i = 0; i < l.actual.Length; i++)
+                
+                for (int i = 0; i < Math.Min(l.actual.Length,l.expected.Length); i++)
                 {
-                    Assert.AreEqual(l.expected[i], l.actual[i], "Mismatch at {0},{1} Expected:{2},Actual:{3}", l.lineNumber, i, l.expected[i], l.actual[i]);
+                    Assert.AreEqual(l.expected[i], l.actual[i], "Mismatch at {0},{1}\r\nExpected:{2}\r\nActual:{3}", l.lineNumber, i, l.expected[i], l.actual[i]);
                 }
+                Assert.AreEqual(l.expected.Length, l.actual.Length, l.actual.Replace("\t", "\\t"));
                 Assert.AreEqual(l.expected, l.actual, l.actual.Replace("\t", "\\t"));
             }
             Assert.AreEqual(expectedBlock, actualBlock);
@@ -341,5 +307,6 @@ namespace GitCommandsTests
             return rawData;
         }
 
+        #endregion
     }
 }
