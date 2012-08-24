@@ -47,7 +47,7 @@ namespace GitCommandsTests
                                  "Committer:\t<a href='mailto:Jane.D&#39;oe@test.com'>Jane D&#39;oe (Acme Inc) &lt;Jane.D&#39;oe@test.com&gt;</a>" + Environment.NewLine +
                                  "Commit date:\t2 days ago (" + commitTime.ToLocalTime().ToString("ddd MMM dd HH':'mm':'ss yyyy") + ")" + Environment.NewLine +
                                  "Commit hash:\t" + commitGuid;
-
+            
             var actualHeader = CommitData.GenerateHeader(aName, generateRawLine(aName, aMail), "3 days ago", authorTime, cName, generateRawLine(cName, cMail), "2 days ago", commitTime, commitGuid);
             AssertTextBlocksEqual(expectedHeader, actualHeader);
         }
@@ -57,36 +57,22 @@ namespace GitCommandsTests
         {
             
             var commitGuid = Guid.NewGuid();
-            var treeGuid = Guid.NewGuid();
-            var parentGuid1 = Guid.NewGuid();
-            var parentGuid2 = Guid.NewGuid();
+           
+          
             var authorTime = DateTime.UtcNow.AddDays(-3);
             var commitTime = DateTime.UtcNow.AddDays(-2);
-            var authorUnixTime = (int)(authorTime - new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds;
-            var commitUnixTime = (int)(commitTime - new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds;
             Func<string, string, string> generateRawLine = (n, email) =>
                String.Format("{0} <{1}>", n, email);
             var aName = "John Doe (Acme Inc)";
             var aMail = "John.Doe@test.com";
             var cName = "Jane Doe (Acme Inc)";
             var cMail = "Jane.Doe@test.com";
-           // var raw = BuildRawForHeader(aName, aMail, authorTime, cName, cMail, commitTime, commitGuid);
+            var raw = BuildRawForHeader(aName, aMail, authorTime, cName, cMail, commitTime, commitGuid);
 
-            var rawData = commitGuid + "\n"+
-                          treeGuid + "\n" +
-                          parentGuid1 + " " + parentGuid2+ "\n"+
-                           generateRawLine(aName, aMail) + "\n" +
-                          authorUnixTime + Environment.NewLine +
-                          generateRawLine(cName, cMail) + "\n" +
-                          commitUnixTime + "\n" +
-                          "\n" +
-                          "\tI made a really neato change.\n\n" +
-                          "Notes (p4notes):\n" +
-                          "\tP4@547123";
+            var expectedHeader = CommitData.CreateFromFormattedData(raw.Replace("\r\n","\n")).GetHeader(); //expects only \n
+            var actualHeader = CommitData.GenerateHeader(aName, generateRawLine(aName,aMail), "3 days ago", authorTime,
+                cName, generateRawLine(cName,cMail), "2 days ago", commitTime, commitGuid);
 
-
-            var expectedHeader = CommitData.CreateFromFormattedData(rawData).GetHeader();
-            var actualHeader = CommitData.GenerateHeader(aName, generateRawLine(aName,aMail), "3 days ago", authorTime, cName, generateRawLine(cName,cMail), "2 days ago", commitTime, commitGuid);
             AssertTextBlocksEqual(expectedHeader, actualHeader);
 
         }
@@ -100,34 +86,19 @@ namespace GitCommandsTests
             var parentGuid2 = Guid.NewGuid();
             var authorTime = DateTime.UtcNow.AddDays(-3);
             var commitTime = DateTime.UtcNow.AddDays(-2);
-            var authorUnixTime = (int)(authorTime - new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds;
-            var commitUnixTime = (int)(commitTime - new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds;
+           
             Func<string, string, string> generateRawLine = (n, email) =>
                 String.Format("{0} <{1}>\n", n, email);
             var aName = "John Doe (Acme Inc)";
             var aMail = "John.Doe@test.com";
             var cName = "Jane Doe (Acme Inc)";
             var cMail = "Jane.Doe@test.com";
-
-            var rawData = commitGuid + "\n" +
-                          treeGuid + "\n" +
-                          parentGuid1 + " " + parentGuid2 + "\n" +
-                          generateRawLine(aName, aMail) +
-                          authorUnixTime + "\n" +
-                          generateRawLine(cName,cMail) +
-                          commitUnixTime + "\n" +
-                          "\n" +
-                          "\tI made a really neato change.\n\n" +
-                          "Notes (p4notes):\n" +
-                          "\tP4@547123";
-
-            var expectedHeader = "Author:\t\t<a href='mailto:John.Doe@test.com'>"+aName+" &lt;John.Doe@test.com&gt;</a>" + Environment.NewLine +
+            
+            var expectedHeader = "Author:\t\t<a href='mailto:"+aMail+"'>"+aName+" &lt;John.Doe@test.com&gt;</a>" + Environment.NewLine +
                                  "Author date:\t3 days ago (" + authorTime.ToLocalTime().ToString("ddd MMM dd HH':'mm':'ss yyyy") + ")" + Environment.NewLine +
-                                 "Committer:\t<a href='mailto:Jane.Doe@test.com'>Jane Doe (Acme Inc) &lt;Jane.Doe@test.com&gt;</a>" + Environment.NewLine +
+                                 "Committer:\t<a href='mailto:"+cMail+"'>"+cName+" &lt;Jane.Doe@test.com&gt;</a>" + Environment.NewLine +
                                  "Commit date:\t2 days ago (" + commitTime.ToLocalTime().ToString("ddd MMM dd HH':'mm':'ss yyyy") + ")" + Environment.NewLine +
                                  "Commit hash:\t" + commitGuid;
-
-
 
             var header = CommitData.GenerateHeader("John Doe (Acme Inc)", "John Doe (Acme Inc) <John.Doe@test.com>", "3 days ago", authorTime, "Jane Doe (Acme Inc)", "Jane Doe (Acme Inc) <Jane.Doe@test.com>", "2 days ago", commitTime, commitGuid);
             AssertTextBlocksEqual(expectedHeader, header);
@@ -146,7 +117,7 @@ namespace GitCommandsTests
             var commitTime = DateTime.UtcNow.AddDays(-2);
             var authorUnixTime = (int)(authorTime - new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds;
             var commitUnixTime = (int)(commitTime - new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds;
-
+            
             var rawData = commitGuid + "\n" +
                           treeGuid + "\n" +
                           parentGuid1 + " " + parentGuid2 + "\n" +

@@ -33,16 +33,16 @@ namespace GitUI
             }
         }
 
-        protected override void WndProc(ref Message m)
-        {
-            base.WndProc(ref m);
+        //protected override void WndProc(ref Message m)
+        //{
+        //    base.WndProc(ref m);
 
-            if (this.clickThrough &&
-                m.Msg == NativeConstants.WM_MOUSEACTIVATE &&
-                m.Result == (IntPtr)NativeConstants.MA_ACTIVATEANDEAT)
-            {
-                m.Result = (IntPtr)NativeConstants.MA_ACTIVATE;
-            }
-        }
+        //    if (this.clickThrough &&
+        //        m.Msg == NativeConstants.WM_MOUSEACTIVATE &&
+        //        m.Result == (IntPtr)NativeConstants.MA_ACTIVATEANDEAT)
+        //    {
+        //        m.Result = (IntPtr)NativeConstants.MA_ACTIVATE;
+        //    }
+        //}
     }
 }
