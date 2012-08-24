@@ -1478,7 +1478,7 @@ namespace GitUI
 
             RemoveSubmoduleButtons();
 
-            foreach (var submodule in Settings.Module.GetSubmodulesLocalPathes().OrderBy(submoduleName => submoduleName))
+            foreach (var submodule in Settings.Module.GetSubmodulesLocalPaths().OrderBy(submoduleName => submoduleName))
             {
                 var submenu = new ToolStripMenuItem(submodule);
                 submenu.Click += SubmoduleToolStripButtonClick;

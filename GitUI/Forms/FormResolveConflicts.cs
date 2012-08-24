@@ -277,7 +277,7 @@ namespace GitUI
                 string fullname = Path.Combine(Settings.WorkingDir, filename);
                 if (Directory.Exists(fullname) && !File.Exists(fullname))
                 {
-                    var submodulesList = Settings.Module.GetSubmodulesLocalPathes();
+                    var submodulesList = Settings.Module.GetSubmodulesLocalPaths();
                     if (submodulesList.Any(configSection => configSection.Equals(filename.Trim())))
                     {
                         if (MessageBox.Show(this, mergeConflictIsSubmodule.Text, mergeConflictIsSubmoduleCaption.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)

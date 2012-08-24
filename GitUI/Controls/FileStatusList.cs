@@ -157,7 +157,7 @@ namespace GitUI
 
 #if !__MonoCS__ // TODO Drag'n'Drop doesnt work on Mono/Linux
         private Rectangle dragBoxFromMouseDown;
-
+        Graphics g;
         void FileStatusListBox_MouseMove(object sender, MouseEventArgs e)
         {
             ListBox listBox = sender as ListBox;
@@ -201,8 +201,8 @@ namespace GitUI
                         text = string.Concat(gitItemStatus.Name, " (", gitItemStatus.OldName, ")");
                     else
                         text = gitItemStatus.Name;
-
-                    float fTextWidth = listBox.CreateGraphics().MeasureString(text, listBox.Font).Width + 17;
+                    g = g ?? listBox.CreateGraphics();
+                    float fTextWidth = g.MeasureString(text, listBox.Font).Width + 17;
 
                     //Use width-itemheight because the icon drawn in front of the text is the itemheight
                     if (fTextWidth > (FileStatusListBox.Width - FileStatusListBox.ItemHeight))

@@ -443,7 +443,7 @@ namespace GitUI
         private bool IsSubmodulesIntialized()
         {
             // Fast submodules check
-            var submodules = Settings.Module.GetSubmodulesLocalPathes();
+            var submodules = Settings.Module.GetSubmodulesLocalPaths();
             GitModule submodule = new GitModule();
             foreach (var submoduleName in submodules)
             {

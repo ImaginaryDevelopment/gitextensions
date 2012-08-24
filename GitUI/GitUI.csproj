@@ -79,28 +79,28 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Abort.cs" />
-    <Compile Include="AboutBox.cs">
+    <Compile Include="Forms\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutBox.Designer.cs">
+    <Compile Include="Forms\AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="BranchComboBox.cs">
+    <Compile Include="Controls\BranchComboBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BranchComboBox.Designer.cs">
+    <Compile Include="Controls\BranchComboBox.Designer.cs">
       <DependentUpon>BranchComboBox.cs</DependentUpon>
     </Compile>
     <Compile Include="CommitTemplateItem.cs" />
-    <Compile Include="DvcsGraph.Graph.cs">
+    <Compile Include="Controls\DvcsGraph.Graph.cs">
       <DependentUpon>DvcsGraph.cs</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DvcsGraph.Junction.cs">
+    <Compile Include="Controls\DvcsGraph.Junction.cs">
       <DependentUpon>DvcsGraph.cs</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DvcsGraph.Lanes.cs">
+    <Compile Include="Controls\DvcsGraph.Lanes.cs">
       <DependentUpon>DvcsGraph.cs</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
@@ -112,69 +112,69 @@
     </Compile>
     <Compile Include="FilterBranchHelper.cs" />
     <Compile Include="FilterRevisionsHelper.cs" />
-    <Compile Include="FormCheckoutBranch.cs">
+    <Compile Include="Forms\FormCheckoutBranch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCommitTemplateSettings.cs">
+    <Compile Include="Forms\FormCommitTemplateSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCheckoutBranch.Designer.cs">
+    <Compile Include="Forms\FormCheckoutBranch.Designer.cs">
       <DependentUpon>FormCheckoutBranch.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCommitTemplateSettings.Designer.cs">
+    <Compile Include="Forms\FormCommitTemplateSettings.Designer.cs">
       <DependentUpon>FormCommitTemplateSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCheckoutRemoteBranch.cs">
+    <Compile Include="Forms\FormCheckoutRemoteBranch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCheckoutRemoteBranch.Designer.cs">
+    <Compile Include="Forms\FormCheckoutRemoteBranch.Designer.cs">
       <DependentUpon>FormCheckoutRemoteBranch.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormRecentReposSettings.cs">
+    <Compile Include="Forms\FormRecentReposSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRecentReposSettings.Designer.cs">
+    <Compile Include="Forms\FormRecentReposSettings.Designer.cs">
       <DependentUpon>FormRecentReposSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormRenameBranch.cs">
+    <Compile Include="Forms\FormRenameBranch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRenameBranch.Designer.cs">
+    <Compile Include="Forms\FormRenameBranch.Designer.cs">
       <DependentUpon>FormRenameBranch.cs</DependentUpon>
     </Compile>
     <Compile Include="DataGridViewCheckBoxColumnHeaderCell.cs" />
     <Compile Include="Editor\XHTML2RTF.cs" />
-    <Compile Include="FormContributors.cs">
+    <Compile Include="Forms\FormContributors.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormContributors.Designer.cs">
+    <Compile Include="Forms\FormContributors.Designer.cs">
       <DependentUpon>FormContributors.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormGoToCommit.cs">
+    <Compile Include="Forms\FormGoToCommit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormGoToCommit.Designer.cs">
+    <Compile Include="Forms\FormGoToCommit.Designer.cs">
       <DependentUpon>FormGoToCommit.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormResetChanges.cs">
+    <Compile Include="Forms\FormResetChanges.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormResetChanges.Designer.cs">
+    <Compile Include="Forms\FormResetChanges.Designer.cs">
       <DependentUpon>FormResetChanges.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSelectMultipleBranches.cs">
+    <Compile Include="Forms\FormSelectMultipleBranches.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSelectMultipleBranches.Designer.cs">
+    <Compile Include="Forms\FormSelectMultipleBranches.Designer.cs">
       <DependentUpon>FormSelectMultipleBranches.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSvnClone.cs">
+    <Compile Include="Forms\FormSvnClone.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSvnClone.Designer.cs">
+    <Compile Include="Forms\FormSvnClone.Designer.cs">
       <DependentUpon>FormSvnClone.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormVerify.LostObject.cs">
+    <Compile Include="Forms\FormVerify.LostObject.cs">
       <DependentUpon>FormVerify.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
@@ -198,7 +198,7 @@
     <Compile Include="Hotkey\TextboxHotkey.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MenuStripEx.cs">
+    <Compile Include="Controls\MenuStripEx.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="MessageBoxes.cs" />
@@ -211,10 +211,10 @@
     <Compile Include="Editor\FileViewer.Designer.cs">
       <DependentUpon>FileViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormViewPatch.cs">
+    <Compile Include="Forms\FormViewPatch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormViewPatch.Designer.cs">
+    <Compile Include="Forms\FormViewPatch.Designer.cs">
       <DependentUpon>FormViewPatch.cs</DependentUpon>
     </Compile>
     <Compile Include="Blame\BlameControl.cs">
@@ -242,132 +242,132 @@
       <DependentUpon>FileViewerMono.cs</DependentUpon>
     </Compile>
     <Compile Include="Editor\IFileViewer.cs" />
-    <Compile Include="FormBisect.cs">
+    <Compile Include="Forms\FormBisect.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormBisect.Designer.cs">
+    <Compile Include="Forms\FormBisect.Designer.cs">
       <DependentUpon>FormBisect.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCherryPickMerge.cs">
+    <Compile Include="Forms\FormCherryPickMerge.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCherryPickMerge.Designer.cs">
+    <Compile Include="Forms\FormCherryPickMerge.Designer.cs">
       <DependentUpon>FormCherryPickMerge.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormChooseTranslation.cs">
+    <Compile Include="Forms\FormChooseTranslation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormChooseTranslation.Designer.cs">
+    <Compile Include="Forms\FormChooseTranslation.Designer.cs">
       <DependentUpon>FormChooseTranslation.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormEditor.cs">
+    <Compile Include="Forms\FormEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormEditor.Designer.cs">
+    <Compile Include="Forms\FormEditor.Designer.cs">
       <DependentUpon>FormEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormGitAttributes.cs">
+    <Compile Include="Forms\FormGitAttributes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormGitAttributes.Designer.cs">
+    <Compile Include="Forms\FormGitAttributes.Designer.cs">
       <DependentUpon>FormGitAttributes.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormFixHome.cs">
+    <Compile Include="Forms\FormFixHome.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRunScriptSpecify.cs">
+    <Compile Include="Forms\FormRunScriptSpecify.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRunScriptSpecify.Designer.cs">
+    <Compile Include="Forms\FormRunScriptSpecify.Designer.cs">
       <DependentUpon>FormRunScriptSpecify.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormStatus.cs">
+    <Compile Include="Forms\FormStatus.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormFixHome.Designer.cs">
+    <Compile Include="Forms\FormFixHome.Designer.cs">
       <DependentUpon>FormFixHome.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormStatus.Designer.cs">
+    <Compile Include="Forms\FormStatus.Designer.cs">
       <DependentUpon>FormStatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSplash.cs">
+    <Compile Include="Forms\FormSplash.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSplash.Designer.cs">
+    <Compile Include="Forms\FormSplash.Designer.cs">
       <DependentUpon>FormSplash.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormTranslate.cs">
+    <Compile Include="Forms\FormTranslate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormTranslate.Designer.cs">
+    <Compile Include="Forms\FormTranslate.Designer.cs">
       <DependentUpon>FormTranslate.cs</DependentUpon>
     </Compile>
-    <Compile Include="GitExtensionsUserControl.cs">
+    <Compile Include="Controls\GitExtensionsUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormBrowse.cs">
+    <Compile Include="Forms\FormBrowse.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormBrowse.Designer.cs">
+    <Compile Include="Forms\FormBrowse.Designer.cs">
       <DependentUpon>FormBrowse.cs</DependentUpon>
     </Compile>
     <Compile Include="Editor\ColorHelper.cs" />
-    <Compile Include="FormCommit.cs">
+    <Compile Include="Forms\FormCommit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCommit.Designer.cs">
+    <Compile Include="Forms\FormCommit.Designer.cs">
       <DependentUpon>FormCommit.cs</DependentUpon>
     </Compile>
-    <Compile Include="CommitInfo.cs">
+    <Compile Include="Controls\CommitInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CommitInfo.Designer.cs">
+    <Compile Include="Controls\CommitInfo.Designer.cs">
       <DependentUpon>CommitInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dashboard.cs">
+    <Compile Include="Controls\Dashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Dashboard.Designer.cs">
+    <Compile Include="Controls\Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="DashboardCategory.cs">
+    <Compile Include="Controls\DashboardCategory.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DashboardCategory.Designer.cs">
+    <Compile Include="Controls\DashboardCategory.Designer.cs">
       <DependentUpon>DashboardCategory.cs</DependentUpon>
     </Compile>
-    <Compile Include="DashboardEditor.cs">
+    <Compile Include="Controls\DashboardEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DashboardEditor.Designer.cs">
+    <Compile Include="Controls\DashboardEditor.Designer.cs">
       <DependentUpon>DashboardEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="DashboardItem.cs">
+    <Compile Include="Controls\DashboardItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DashboardItem.Designer.cs">
+    <Compile Include="Controls\DashboardItem.Designer.cs">
       <DependentUpon>DashboardItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="DvcsGraph.cs">
+    <Compile Include="Controls\DvcsGraph.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DvcsGraph.Designer.cs">
+    <Compile Include="Controls\DvcsGraph.Designer.cs">
       <DependentUpon>DvcsGraph.cs</DependentUpon>
     </Compile>
-    <Compile Include="FileStatusList.cs">
+    <Compile Include="Controls\FileStatusList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FileStatusList.Designer.cs">
+    <Compile Include="Controls\FileStatusList.Designer.cs">
       <DependentUpon>FileStatusList.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCherryPickCommitSmall.cs">
+    <Compile Include="Forms\FormCherryPickCommitSmall.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCherryPickCommitSmall.Designer.cs">
+    <Compile Include="Forms\FormCherryPickCommitSmall.Designer.cs">
       <DependentUpon>FormCherryPickCommitSmall.cs</DependentUpon>
     </Compile>
     <Compile Include="GitFileTreeComparer.cs" />
-    <Compile Include="Google.cs" />
+    <Compile Include="Translation\Google.cs" />
     <Compile Include="Lemmings.cs" />
     <Compile Include="ProcessOutputTimer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -406,82 +406,82 @@
       <DependentUpon>EditNetSpell.cs</DependentUpon>
     </Compile>
     <Compile Include="Editor\EditorOptions.cs" />
-    <Compile Include="FindAndReplaceForm.cs">
+    <Compile Include="Forms\FindAndReplaceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FindAndReplaceForm.Designer.cs">
+    <Compile Include="Forms\FindAndReplaceForm.Designer.cs">
       <DependentUpon>FindAndReplaceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAddFiles.cs">
+    <Compile Include="Forms\FormAddFiles.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAddFiles.Designer.cs">
+    <Compile Include="Forms\FormAddFiles.Designer.cs">
       <DependentUpon>FormAddFiles.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAddSubmodule.cs">
+    <Compile Include="Forms\FormAddSubmodule.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAddSubmodule.Designer.cs">
+    <Compile Include="Forms\FormAddSubmodule.Designer.cs">
       <DependentUpon>FormAddSubmodule.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAddToGitIgnore.cs">
+    <Compile Include="Forms\FormAddToGitIgnore.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAddToGitIgnore.Designer.cs">
+    <Compile Include="Forms\FormAddToGitIgnore.Designer.cs">
       <DependentUpon>FormAddToGitIgnore.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormArchive.cs">
+    <Compile Include="Forms\FormArchive.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormArchive.Designer.cs">
+    <Compile Include="Forms\FormArchive.Designer.cs">
       <DependentUpon>FormArchive.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormBranch.cs">
+    <Compile Include="Forms\FormBranch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormBranch.Designer.cs">
+    <Compile Include="Forms\FormBranch.Designer.cs">
       <DependentUpon>FormBranch.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormBranchSmall.cs">
+    <Compile Include="Forms\FormBranchSmall.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormBranchSmall.Designer.cs">
+    <Compile Include="Forms\FormBranchSmall.Designer.cs">
       <DependentUpon>FormBranchSmall.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormChangeLog.cs">
+    <Compile Include="Forms\FormChangeLog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormChangeLog.Designer.cs">
+    <Compile Include="Forms\FormChangeLog.Designer.cs">
       <DependentUpon>FormChangeLog.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCheckout.cs">
+    <Compile Include="Forms\FormCheckout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCheckout.Designer.cs">
+    <Compile Include="Forms\FormCheckout.Designer.cs">
       <DependentUpon>FormCheckout.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCherryPick.cs">
+    <Compile Include="Forms\FormCherryPick.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCherryPick.Designer.cs">
+    <Compile Include="Forms\FormCherryPick.Designer.cs">
       <DependentUpon>FormCherryPick.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCleanupRepository.cs">
+    <Compile Include="Forms\FormCleanupRepository.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCleanupRepository.Designer.cs">
+    <Compile Include="Forms\FormCleanupRepository.Designer.cs">
       <DependentUpon>FormCleanupRepository.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormClone.cs">
+    <Compile Include="Forms\FormClone.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormClone.Designer.cs">
+    <Compile Include="Forms\FormClone.Designer.cs">
       <DependentUpon>FormClone.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCommandlineHelp.cs">
+    <Compile Include="Forms\FormCommandlineHelp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCommandlineHelp.Designer.cs">
+    <Compile Include="Forms\FormCommandlineHelp.Designer.cs">
       <DependentUpon>FormCommandlineHelp.cs</DependentUpon>
     </Compile>
     <Compile Include="Statistics\FormCommitCount.cs">
@@ -490,22 +490,22 @@
     <Compile Include="Statistics\FormCommitCount.Designer.cs">
       <DependentUpon>FormCommitCount.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDashboardCategoryTitle.cs">
+    <Compile Include="Forms\FormDashboardCategoryTitle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDashboardCategoryTitle.Designer.cs">
+    <Compile Include="Forms\FormDashboardCategoryTitle.Designer.cs">
       <DependentUpon>FormDashboardCategoryTitle.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDashboardEditor.cs">
+    <Compile Include="Forms\FormDashboardEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDashboardEditor.Designer.cs">
+    <Compile Include="Forms\FormDashboardEditor.Designer.cs">
       <DependentUpon>FormDashboardEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDeleteBranch.cs">
+    <Compile Include="Forms\FormDeleteBranch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDeleteBranch.Designer.cs">
+    <Compile Include="Forms\FormDeleteBranch.Designer.cs">
       <DependentUpon>FormDeleteBranch.cs</DependentUpon>
     </Compile>
     <Compile Include="Tag\FormDeleteTag.cs">
@@ -514,71 +514,71 @@
     <Compile Include="Tag\FormDeleteTag.Designer.cs">
       <DependentUpon>FormDeleteTag.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDiff.cs">
+    <Compile Include="Forms\FormDiff.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDiff.Designer.cs">
+    <Compile Include="Forms\FormDiff.Designer.cs">
       <DependentUpon>FormDiff.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDiffSmall.cs">
+    <Compile Include="Forms\FormDiffSmall.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDiffSmall.Designer.cs">
+    <Compile Include="Forms\FormDiffSmall.Designer.cs">
       <DependentUpon>FormDiffSmall.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDonate.cs">
+    <Compile Include="Forms\FormDonate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDonate.Designer.cs">
+    <Compile Include="Forms\FormDonate.Designer.cs">
       <DependentUpon>FormDonate.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormEdit.cs">
+    <Compile Include="Forms\FormEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormEdit.Designer.cs">
+    <Compile Include="Forms\FormEdit.Designer.cs">
       <DependentUpon>FormEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormFileHistory.cs">
+    <Compile Include="Forms\FormFileHistory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormFileHistory.Designer.cs">
+    <Compile Include="Forms\FormFileHistory.Designer.cs">
       <DependentUpon>FormFileHistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormFormatPatch.cs">
+    <Compile Include="Forms\FormFormatPatch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormFormatPatch.Designer.cs">
+    <Compile Include="Forms\FormFormatPatch.Designer.cs">
       <DependentUpon>FormFormatPatch.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormGitIgnore.cs">
+    <Compile Include="Forms\FormGitIgnore.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormGitIgnore.Designer.cs">
+    <Compile Include="Forms\FormGitIgnore.Designer.cs">
       <DependentUpon>FormGitIgnore.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormInit.cs">
+    <Compile Include="Forms\FormInit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormInit.Designer.cs">
+    <Compile Include="Forms\FormInit.Designer.cs">
       <DependentUpon>FormInit.cs</DependentUpon>
     </Compile>
     <Compile Include="BrowseForPrivateKey.cs" />
-    <Compile Include="FormMailMap.cs">
+    <Compile Include="Forms\FormMailMap.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMailMap.Designer.cs">
+    <Compile Include="Forms\FormMailMap.Designer.cs">
       <DependentUpon>FormMailMap.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormMergeBranch.cs">
+    <Compile Include="Forms\FormMergeBranch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMergeBranch.Designer.cs">
+    <Compile Include="Forms\FormMergeBranch.Designer.cs">
       <DependentUpon>FormMergeBranch.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormModifiedDeletedCreated.cs">
+    <Compile Include="Forms\FormModifiedDeletedCreated.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormModifiedDeletedCreated.Designer.cs">
+    <Compile Include="Forms\FormModifiedDeletedCreated.Designer.cs">
       <DependentUpon>FormModifiedDeletedCreated.cs</DependentUpon>
     </Compile>
     <Compile Include="Plugin\FormPluginSettings.cs">
@@ -587,85 +587,85 @@
     <Compile Include="Plugin\FormPluginSettings.Designer.cs">
       <DependentUpon>FormPluginSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormProcess.cs">
+    <Compile Include="Forms\FormProcess.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPull.cs">
+    <Compile Include="Forms\FormPull.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPull.Designer.cs">
+    <Compile Include="Forms\FormPull.Designer.cs">
       <DependentUpon>FormPull.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPush.cs">
+    <Compile Include="Forms\FormPush.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPush.Designer.cs">
+    <Compile Include="Forms\FormPush.Designer.cs">
       <DependentUpon>FormPush.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPuttyError.cs">
+    <Compile Include="Forms\FormPuttyError.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPuttyError.Designer.cs">
+    <Compile Include="Forms\FormPuttyError.Designer.cs">
       <DependentUpon>FormPuttyError.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormRebase.cs">
+    <Compile Include="Forms\FormRebase.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRebase.Designer.cs">
+    <Compile Include="Forms\FormRebase.Designer.cs">
       <DependentUpon>FormRebase.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormRemotes.cs">
+    <Compile Include="Forms\FormRemotes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRemotes.Designer.cs">
+    <Compile Include="Forms\FormRemotes.Designer.cs">
       <DependentUpon>FormRemotes.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormResetCurrentBranch.cs">
+    <Compile Include="Forms\FormResetCurrentBranch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormResetCurrentBranch.Designer.cs">
+    <Compile Include="Forms\FormResetCurrentBranch.Designer.cs">
       <DependentUpon>FormResetCurrentBranch.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormResolveConflicts.cs">
+    <Compile Include="Forms\FormResolveConflicts.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormResolveConflicts.Designer.cs">
+    <Compile Include="Forms\FormResolveConflicts.Designer.cs">
       <DependentUpon>FormResolveConflicts.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormRevert.cs">
+    <Compile Include="Forms\FormRevert.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRevert.Designer.cs">
+    <Compile Include="Forms\FormRevert.Designer.cs">
       <DependentUpon>FormRevert.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormRevertCommitSmall.cs">
+    <Compile Include="Forms\FormRevertCommitSmall.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRevertCommitSmall.Designer.cs">
+    <Compile Include="Forms\FormRevertCommitSmall.Designer.cs">
       <DependentUpon>FormRevertCommitSmall.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormRevisionFilter.cs">
+    <Compile Include="Forms\FormRevisionFilter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRevisionFilter.Designer.cs">
+    <Compile Include="Forms\FormRevisionFilter.Designer.cs">
       <DependentUpon>FormRevisionFilter.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSettings.cs">
+    <Compile Include="Forms\FormSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSettings.Designer.cs">
+    <Compile Include="Forms\FormSettings.Designer.cs">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormStash.cs">
+    <Compile Include="Forms\FormStash.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormStash.Designer.cs">
+    <Compile Include="Forms\FormStash.Designer.cs">
       <DependentUpon>FormStash.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSubmodules.cs">
+    <Compile Include="Forms\FormSubmodules.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSubmodules.Designer.cs">
+    <Compile Include="Forms\FormSubmodules.Designer.cs">
       <DependentUpon>FormSubmodules.cs</DependentUpon>
     </Compile>
     <Compile Include="Tag\FormTag.cs">
@@ -680,50 +680,50 @@
     <Compile Include="Tag\FormTagSmall.Designer.cs">
       <DependentUpon>FormTagSmall.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormVerify.cs">
+    <Compile Include="Forms\FormVerify.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormVerify.Designer.cs">
+    <Compile Include="Forms\FormVerify.Designer.cs">
       <DependentUpon>FormVerify.cs</DependentUpon>
     </Compile>
-    <Compile Include="GitExtensionsForm.cs">
+    <Compile Include="Forms\GitExtensionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GitLogForm.cs">
+    <Compile Include="Forms\GitLogForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GitLogForm.Designer.cs">
+    <Compile Include="Forms\GitLogForm.Designer.cs">
       <DependentUpon>GitLogForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GitUICommands.cs" />
     <Compile Include="GitUIEventArgs.cs" />
     <Compile Include="Plugin\LoadedPlugins.cs" />
-    <Compile Include="GravatarControl.cs">
+    <Compile Include="Controls\GravatarControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GravatarControl.Designer.cs">
+    <Compile Include="Controls\GravatarControl.Designer.cs">
       <DependentUpon>GravatarControl.cs</DependentUpon>
     </Compile>
     <Compile Include="IndexWatcher.cs" />
     <Compile Include="MergeConflictHandler.cs" />
-    <Compile Include="FormApplyPatch.cs">
+    <Compile Include="Forms\FormApplyPatch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormApplyPatch.Designer.cs">
+    <Compile Include="Forms\FormApplyPatch.Designer.cs">
       <DependentUpon>FormApplyPatch.cs</DependentUpon>
     </Compile>
     <Compile Include="Native.cs" />
-    <Compile Include="FormOpenDirectory.cs">
+    <Compile Include="Forms\FormOpenDirectory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormOpenDirectory.Designer.cs">
+    <Compile Include="Forms\FormOpenDirectory.Designer.cs">
       <DependentUpon>FormOpenDirectory.cs</DependentUpon>
     </Compile>
     <Compile Include="OpenWith.cs" />
-    <Compile Include="PatchGrid.cs">
+    <Compile Include="Controls\PatchGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PatchGrid.Designer.cs">
+    <Compile Include="Controls\PatchGrid.Designer.cs">
       <DependentUpon>PatchGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
@@ -731,86 +731,86 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="RevisionGrid.cs">
+    <Compile Include="Controls\RevisionGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RevisionGrid.Designer.cs">
+    <Compile Include="Controls\RevisionGrid.Designer.cs">
       <DependentUpon>RevisionGrid.cs</DependentUpon>
     </Compile>
-    <Compile Include="SearchWindow.cs">
+    <Compile Include="Forms\SearchWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SearchWindow.Designer.cs">
+    <Compile Include="Forms\SearchWindow.Designer.cs">
       <DependentUpon>SearchWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="SpellChecker\SpellCheckEditControl.cs" />
     <Compile Include="SpellChecker\TextBoxHelper.cs" />
-    <Compile Include="ToolStripEx.cs">
+    <Compile Include="Controls\ToolStripEx.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ToolStripGitStatus.cs">
+    <Compile Include="Controls\ToolStripGitStatus.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ToolStripGitStatus.Designer.cs">
+    <Compile Include="Controls\ToolStripGitStatus.Designer.cs">
       <DependentUpon>ToolStripGitStatus.cs</DependentUpon>
     </Compile>
     <Compile Include="SpellChecker\TextPos.cs" />
-    <Compile Include="WarningToolStripItem.cs">
+    <Compile Include="Controls\WarningToolStripItem.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WindowPositionList.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AboutBox.resx">
+    <EmbeddedResource Include="Forms\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Editor\FormGoToLine.resx">
       <DependentUpon>FormGoToLine.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCommitTemplateSettings.resx">
+    <EmbeddedResource Include="Forms\FormCommitTemplateSettings.resx">
       <DependentUpon>FormCommitTemplateSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCheckoutBranch.resx">
+    <EmbeddedResource Include="Forms\FormCheckoutBranch.resx">
       <DependentUpon>FormCheckoutBranch.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCheckoutRemoteBranch.resx">
+    <EmbeddedResource Include="Forms\FormCheckoutRemoteBranch.resx">
       <DependentUpon>FormCheckoutRemoteBranch.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormRecentReposSettings.resx">
+    <EmbeddedResource Include="Forms\FormRecentReposSettings.resx">
       <DependentUpon>FormRecentReposSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormRenameBranch.resx">
+    <EmbeddedResource Include="Forms\FormRenameBranch.resx">
       <DependentUpon>FormRenameBranch.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="BranchComboBox.resx">
+    <EmbeddedResource Include="Controls\BranchComboBox.resx">
       <DependentUpon>BranchComboBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editor\FileViewer.resx">
       <DependentUpon>FileViewer.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormContributors.resx">
+    <EmbeddedResource Include="Forms\FormContributors.resx">
       <DependentUpon>FormContributors.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormGoToCommit.resx">
+    <EmbeddedResource Include="Forms\FormGoToCommit.resx">
       <DependentUpon>FormGoToCommit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormResetChanges.resx">
+    <EmbeddedResource Include="Forms\FormResetChanges.resx">
       <DependentUpon>FormResetChanges.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSelectMultipleBranches.resx">
+    <EmbeddedResource Include="Forms\FormSelectMultipleBranches.resx">
       <DependentUpon>FormSelectMultipleBranches.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSvnClone.resx">
+    <EmbeddedResource Include="Forms\FormSvnClone.resx">
       <DependentUpon>FormSvnClone.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormViewPatch.resx">
+    <EmbeddedResource Include="Forms\FormViewPatch.resx">
       <DependentUpon>FormViewPatch.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -830,67 +830,67 @@
       <DependentUpon>FileViewerMono.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormBisect.resx">
+    <EmbeddedResource Include="Forms\FormBisect.resx">
       <DependentUpon>FormBisect.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCherryPickMerge.resx">
+    <EmbeddedResource Include="Forms\FormCherryPickMerge.resx">
       <DependentUpon>FormCherryPickMerge.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormChooseTranslation.resx">
+    <EmbeddedResource Include="Forms\FormChooseTranslation.resx">
       <DependentUpon>FormChooseTranslation.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormEditor.resx">
+    <EmbeddedResource Include="Forms\FormEditor.resx">
       <DependentUpon>FormEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormGitAttributes.resx">
+    <EmbeddedResource Include="Forms\FormGitAttributes.resx">
       <DependentUpon>FormGitAttributes.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormBrowse.resx">
+    <EmbeddedResource Include="Forms\FormBrowse.resx">
       <DependentUpon>FormBrowse.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCommit.resx">
+    <EmbeddedResource Include="Forms\FormCommit.resx">
       <DependentUpon>FormCommit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="CommitInfo.resx">
+    <EmbeddedResource Include="Controls\CommitInfo.resx">
       <DependentUpon>CommitInfo.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dashboard.resx">
+    <EmbeddedResource Include="Controls\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="DashboardCategory.resx">
+    <EmbeddedResource Include="Controls\DashboardCategory.resx">
       <DependentUpon>DashboardCategory.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="DashboardEditor.resx">
+    <EmbeddedResource Include="Controls\DashboardEditor.resx">
       <DependentUpon>DashboardEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="DashboardItem.resx">
+    <EmbeddedResource Include="Controls\DashboardItem.resx">
       <DependentUpon>DashboardItem.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="DvcsGraph.resx">
+    <EmbeddedResource Include="Controls\DvcsGraph.resx">
       <DependentUpon>DvcsGraph.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FileStatusList.resx">
+    <EmbeddedResource Include="Controls\FileStatusList.resx">
       <DependentUpon>FileStatusList.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCherryPickCommitSmall.resx">
+    <EmbeddedResource Include="Forms\FormCherryPickCommitSmall.resx">
       <DependentUpon>FormCherryPickCommitSmall.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormRunScriptSpecify.resx">
+    <EmbeddedResource Include="Forms\FormRunScriptSpecify.resx">
       <DependentUpon>FormRunScriptSpecify.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -921,55 +921,55 @@
       <DependentUpon>EditNetSpell.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FindAndReplaceForm.resx">
+    <EmbeddedResource Include="Forms\FindAndReplaceForm.resx">
       <DependentUpon>FindAndReplaceForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAddFiles.resx">
+    <EmbeddedResource Include="Forms\FormAddFiles.resx">
       <DependentUpon>FormAddFiles.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAddSubmodule.resx">
+    <EmbeddedResource Include="Forms\FormAddSubmodule.resx">
       <DependentUpon>FormAddSubmodule.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAddToGitIgnore.resx">
+    <EmbeddedResource Include="Forms\FormAddToGitIgnore.resx">
       <DependentUpon>FormAddToGitIgnore.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormArchive.resx">
+    <EmbeddedResource Include="Forms\FormArchive.resx">
       <DependentUpon>FormArchive.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormBranch.resx">
+    <EmbeddedResource Include="Forms\FormBranch.resx">
       <DependentUpon>FormBranch.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormBranchSmall.resx">
+    <EmbeddedResource Include="Forms\FormBranchSmall.resx">
       <DependentUpon>FormBranchSmall.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormChangeLog.resx">
+    <EmbeddedResource Include="Forms\FormChangeLog.resx">
       <DependentUpon>FormChangeLog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCheckout.resx">
+    <EmbeddedResource Include="Forms\FormCheckout.resx">
       <DependentUpon>FormCheckout.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCherryPick.resx">
+    <EmbeddedResource Include="Forms\FormCherryPick.resx">
       <DependentUpon>FormCherryPick.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCleanupRepository.resx">
+    <EmbeddedResource Include="Forms\FormCleanupRepository.resx">
       <DependentUpon>FormCleanupRepository.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormClone.resx">
+    <EmbeddedResource Include="Forms\FormClone.resx">
       <DependentUpon>FormClone.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCommandlineHelp.resx">
+    <EmbeddedResource Include="Forms\FormCommandlineHelp.resx">
       <DependentUpon>FormCommandlineHelp.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -977,15 +977,15 @@
       <DependentUpon>FormCommitCount.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDashboardCategoryTitle.resx">
+    <EmbeddedResource Include="Forms\FormDashboardCategoryTitle.resx">
       <DependentUpon>FormDashboardCategoryTitle.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDashboardEditor.resx">
+    <EmbeddedResource Include="Forms\FormDashboardEditor.resx">
       <DependentUpon>FormDashboardEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDeleteBranch.resx">
+    <EmbeddedResource Include="Forms\FormDeleteBranch.resx">
       <DependentUpon>FormDeleteBranch.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -993,51 +993,51 @@
       <DependentUpon>FormDeleteTag.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDiff.resx">
+    <EmbeddedResource Include="Forms\FormDiff.resx">
       <DependentUpon>FormDiff.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDiffSmall.resx">
+    <EmbeddedResource Include="Forms\FormDiffSmall.resx">
       <DependentUpon>FormDiffSmall.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDonate.resx">
+    <EmbeddedResource Include="Forms\FormDonate.resx">
       <DependentUpon>FormDonate.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormEdit.resx">
+    <EmbeddedResource Include="Forms\FormEdit.resx">
       <DependentUpon>FormEdit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormFileHistory.resx">
+    <EmbeddedResource Include="Forms\FormFileHistory.resx">
       <DependentUpon>FormFileHistory.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormFixHome.resx">
+    <EmbeddedResource Include="Forms\FormFixHome.resx">
       <DependentUpon>FormFixHome.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormFormatPatch.resx">
+    <EmbeddedResource Include="Forms\FormFormatPatch.resx">
       <DependentUpon>FormFormatPatch.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormGitIgnore.resx">
+    <EmbeddedResource Include="Forms\FormGitIgnore.resx">
       <DependentUpon>FormGitIgnore.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormInit.resx">
+    <EmbeddedResource Include="Forms\FormInit.resx">
       <DependentUpon>FormInit.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMailMap.resx">
+    <EmbeddedResource Include="Forms\FormMailMap.resx">
       <DependentUpon>FormMailMap.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMergeBranch.resx">
+    <EmbeddedResource Include="Forms\FormMergeBranch.resx">
       <DependentUpon>FormMergeBranch.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormModifiedDeletedCreated.resx">
+    <EmbeddedResource Include="Forms\FormModifiedDeletedCreated.resx">
       <DependentUpon>FormModifiedDeletedCreated.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -1045,63 +1045,63 @@
       <DependentUpon>FormPluginSettings.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPull.resx">
+    <EmbeddedResource Include="Forms\FormPull.resx">
       <DependentUpon>FormPull.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPush.resx">
+    <EmbeddedResource Include="Forms\FormPush.resx">
       <DependentUpon>FormPush.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPuttyError.resx">
+    <EmbeddedResource Include="Forms\FormPuttyError.resx">
       <DependentUpon>FormPuttyError.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormRebase.resx">
+    <EmbeddedResource Include="Forms\FormRebase.resx">
       <DependentUpon>FormRebase.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormRemotes.resx">
+    <EmbeddedResource Include="Forms\FormRemotes.resx">
       <DependentUpon>FormRemotes.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormResetCurrentBranch.resx">
+    <EmbeddedResource Include="Forms\FormResetCurrentBranch.resx">
       <DependentUpon>FormResetCurrentBranch.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormResolveConflicts.resx">
+    <EmbeddedResource Include="Forms\FormResolveConflicts.resx">
       <DependentUpon>FormResolveConflicts.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormRevert.resx">
+    <EmbeddedResource Include="Forms\FormRevert.resx">
       <DependentUpon>FormRevert.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormRevertCommitSmall.resx">
+    <EmbeddedResource Include="Forms\FormRevertCommitSmall.resx">
       <DependentUpon>FormRevertCommitSmall.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormRevisionFilter.resx">
+    <EmbeddedResource Include="Forms\FormRevisionFilter.resx">
       <DependentUpon>FormRevisionFilter.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSettings.resx">
+    <EmbeddedResource Include="Forms\FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSplash.resx">
+    <EmbeddedResource Include="Forms\FormSplash.resx">
       <DependentUpon>FormSplash.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormStash.resx">
+    <EmbeddedResource Include="Forms\FormStash.resx">
       <DependentUpon>FormStash.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormStatus.resx">
+    <EmbeddedResource Include="Forms\FormStatus.resx">
       <DependentUpon>FormStatus.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSubmodules.resx">
+    <EmbeddedResource Include="Forms\FormSubmodules.resx">
       <DependentUpon>FormSubmodules.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -1113,35 +1113,35 @@
       <DependentUpon>FormTagSmall.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormTranslate.resx">
+    <EmbeddedResource Include="Forms\FormTranslate.resx">
       <DependentUpon>FormTranslate.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormVerify.resx">
+    <EmbeddedResource Include="Forms\FormVerify.resx">
       <DependentUpon>FormVerify.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="GitExtensionsUserControl.resx">
+    <EmbeddedResource Include="Controls\GitExtensionsUserControl.resx">
       <DependentUpon>GitExtensionsUserControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="GitLogForm.resx">
+    <EmbeddedResource Include="Forms\GitLogForm.resx">
       <DependentUpon>GitLogForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="GravatarControl.resx">
+    <EmbeddedResource Include="Controls\GravatarControl.resx">
       <DependentUpon>GravatarControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormApplyPatch.resx">
+    <EmbeddedResource Include="Forms\FormApplyPatch.resx">
       <DependentUpon>FormApplyPatch.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormOpenDirectory.resx">
+    <EmbeddedResource Include="Forms\FormOpenDirectory.resx">
       <DependentUpon>FormOpenDirectory.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="PatchGrid.resx">
+    <EmbeddedResource Include="Controls\PatchGrid.resx">
       <DependentUpon>PatchGrid.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -1150,15 +1150,15 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="RevisionGrid.resx">
+    <EmbeddedResource Include="Controls\RevisionGrid.resx">
       <DependentUpon>RevisionGrid.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolStripGitStatus.resx">
+    <EmbeddedResource Include="Controls\ToolStripGitStatus.resx">
       <DependentUpon>ToolStripGitStatus.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="SearchWindow.resx">
+    <EmbeddedResource Include="Forms\SearchWindow.resx">
       <DependentUpon>SearchWindow.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -1189,13 +1189,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <Compile Include="FormRemoteProcess.cs">
+    <Compile Include="Forms\FormRemoteProcess.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRemoteProcess.Designer.cs">
+    <Compile Include="Forms\FormRemoteProcess.Designer.cs">
       <DependentUpon>FormRemoteProcess.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormVerify.SortableLostObjectsList.cs">
+    <Compile Include="Forms\FormVerify.SortableLostObjectsList.cs">
       <DependentUpon>FormVerify.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
