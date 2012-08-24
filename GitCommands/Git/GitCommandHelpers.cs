@@ -6,6 +6,8 @@ using System.IO;
 using System.Security.Permissions;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Linq;
+
 using GitCommands.Config;
 using GitCommands.Git;
 using JetBrains.Annotations;
@@ -858,8 +860,27 @@ namespace GitCommands
                     gitItemStatusY = GitItemStatusFromCopyRename(false, nextfile, fileName, y, status);
                     n++;
                 }
+                else if (y == '?')
+                {
+                     gitItemStatusY = GitItemStatusFromStatusCharacter(fileName, y);
+                     var fileNameOnly = gitItemStatusY.Name.Contains(System.IO.Path.DirectorySeparatorChar) ? gitItemStatusY.Name.Substring(gitItemStatusY.Name.LastIndexOf(System.IO.Path.DirectorySeparatorChar)) : gitItemStatusY.Name;
+                     fileNameOnly = fileNameOnly.Contains(System.IO.Path.AltDirectorySeparatorChar) ? fileNameOnly.Substring(fileNameOnly.LastIndexOf(System.IO.Path.AltDirectorySeparatorChar)) : fileNameOnly;
+
+                     var nextFile = files.Where((f, i) => i != n && f.EndsWith(fileNameOnly)).FirstOrDefault();
+                     if (nextFile != null && nextFile.Length > 2 && nextFile[1] == ' ')
+                     {
+                         nextFile = nextFile.Substring(2);
+                         gitItemStatusY.OldName = nextFile;
+                     }
+                     Debug.Assert(gitItemStatusY != null);
+                    //string nextFile = files.FirstOrDefault(f=>);
+
+                }
                 else
+                {
+
                     gitItemStatusY = GitItemStatusFromStatusCharacter(fileName, y);
+                }
                 gitItemStatusY.IsStaged = false;
                 if (Submodules.Contains(gitItemStatusY.Name))
                     gitItemStatusY.IsSubmodule = true;
@@ -1219,7 +1240,7 @@ namespace GitCommands
 
         public static string GetRelativeDateString(DateTime originDate, DateTime previousDate)
         {
-            return  GetRelativeDateString(originDate, previousDate, true);
+            return GetRelativeDateString(originDate, previousDate, true);
         }
 
         public static string ReEncodeFileName(string diffStr, int headerLines)
