@@ -76,7 +76,7 @@ namespace GitUI
             var cloneSvnItem = new DashboardItem(Resources.SaveAs, cloneSvnRepository.Text);
             cloneSvnItem.Click += cloneSvnItem_Click;
             CommonActions.AddItem(cloneSvnItem);
-
+            
             foreach (IRepositoryHostPlugin el in RepoHosts.GitHosters)
             {
                 IRepositoryHostPlugin gitHoster = el;

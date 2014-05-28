@@ -61,15 +61,19 @@ namespace GitUI
                 {
                     // Serialize to a base 64 string
                     byte[] bytes;
-                    MemoryStream ws = new MemoryStream();
-                    BinaryFormatter sf = new BinaryFormatter();
-                    sf.Serialize(ws, items);
-                    bytes = ws.GetBuffer();
+                    using (MemoryStream ws = new MemoryStream())
+                    {
+                        BinaryFormatter sf = new BinaryFormatter();
+
+                        sf.Serialize(ws, items);
+                        bytes = ws.GetBuffer();
+                    }
+
                     return bytes.Length.ToString() + ":" + Convert.ToBase64String(bytes, 0, bytes.Length, Base64FormattingOptions.None);
                 }
-                else
+
+                using (var sw = new StringWriter())
                 {
-                    var sw = new StringWriter();
                     var serializer = new XmlSerializer(typeof(CommitTemplateItem[]));
                     serializer.Serialize(sw, items);
                     return sw.ToString();
@@ -95,9 +99,11 @@ namespace GitUI
                     int length = Convert.ToInt32(serializedString.Substring(0, p));
 
                     byte[] memorydata = Convert.FromBase64String(serializedString.Substring(p + 1));
-                    MemoryStream rs = new MemoryStream(memorydata, 0, length);
-                    BinaryFormatter sf = new BinaryFormatter();
-                    commitTemplateItem = (CommitTemplateItem[])sf.Deserialize(rs);
+                    using (MemoryStream rs = new MemoryStream(memorydata, 0, length))
+                    {   
+                        BinaryFormatter sf = new BinaryFormatter();
+                        commitTemplateItem = (CommitTemplateItem[])sf.Deserialize(rs);
+                    }
                 }
                 else
                 {

@@ -17,16 +17,6 @@ namespace GitUI
         private static readonly TranslationString _pageantNotFoundCaption =
             new TranslationString("PuTTY");
 
-        private static readonly TranslationString _loadKeyFailed =
-            new TranslationString("Could not load key.");
-        private static readonly TranslationString _loadKeyFailedCaption =
-            new TranslationString("PuTTY");
-
-        private static readonly TranslationString _browsePrivateKeyFilter =
-            new TranslationString("Private key");
-        private static readonly TranslationString _browsePrivateKeyCaption =
-            new TranslationString("Select SSH key file");
-
         /// <summary>
         /// Prompts the user to browse for a key, and attempts to load it. Returns the path to the key, if successful.
         /// </summary>
@@ -45,14 +35,13 @@ namespace GitUI
         /// </summary>
         public static string Browse(IWin32Window parent)
         {
-            using (var dialog = new OpenFileDialog
-            {
-                Filter = " (*.ppk)|*.ppk",
-                InitialDirectory = ".",
-                Title = "Browse for key"
-            })
-            {
+            // http://ayende.com/blog/3810/avoid-object-initializers-the-using-statement
 
+            using (var dialog = new OpenFileDialog())
+            {
+                dialog.Filter = " (*.ppk)|*.ppk";
+                dialog.InitialDirectory = ".";
+                dialog.Title = "Browse for key";
                 if (dialog.ShowDialog(parent) == DialogResult.OK)
                     return dialog.FileName;
 

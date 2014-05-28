@@ -1312,7 +1312,11 @@ namespace GitUI
 
             SelectedDiff.Clear();
             var fileNames = Unstaged.SelectedItems.Select(item => item.Name).ToArray();
-            new FormAddToGitIgnore(fileNames).ShowDialog(this);
+            using (var dialog = new FormAddToGitIgnore(fileNames))
+            {
+                dialog.ShowDialog(this);
+            }
+
             Initialize();
         }
 
@@ -1887,6 +1891,7 @@ namespace GitUI
         {
             openContainingFolder(Staged);
         }
+
     }
 
     /// <summary>

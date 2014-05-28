@@ -34,6 +34,7 @@ namespace GitUI
             RevisionInfo.LinkClicked += RevisionInfoLinkClicked;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         private static void RevisionInfoLinkClicked(object sender, LinkClickedEventArgs e)
         {
             try
@@ -147,7 +148,7 @@ namespace GitUI
             bool getRemote = Settings.CommitInfoShowContainedInBranchesRemote ||
                              Settings.CommitInfoShowContainedInBranchesRemoteIfNoLocal;
             var branches = CommitInformation.GetAllBranchesWhichContainGivenCommit(revision, getLocal, getRemote);
-            var branchString = "";
+            string branchString =null;
             bool allowLocal = Settings.CommitInfoShowContainedInBranchesLocal;
             bool allowRemote = getRemote;
             foreach (var branch in branches)
@@ -171,7 +172,7 @@ namespace GitUI
 
                 if ((branchIsLocal && allowLocal) || (!branchIsLocal && allowRemote))
                 {
-                    if (branchString != string.Empty)
+                    if (!string.IsNullOrEmpty(branchString))
                         branchString += ", ";
                     branchString += noPrefixBranch;
                 }
@@ -179,22 +180,22 @@ namespace GitUI
                 if (branchIsLocal && Settings.CommitInfoShowContainedInBranchesRemoteIfNoLocal)
                     allowRemote = false;
             }
-            if (branchString != string.Empty)
+            if (!string.IsNullOrEmpty(branchString))
                 return Environment.NewLine + HttpUtility.HtmlEncode(containedInBranches.Text + " " + branchString);
             return Environment.NewLine + HttpUtility.HtmlEncode(containedInNoBranch.Text);
         }
 
         private string GetTagsWhichContainsThisCommit(string revision)
         {
-            var tagString = "";
+            string tagString = null;
             foreach (var tag in CommitInformation.GetAllTagsWhichContainGivenCommit(revision))
             {
-                if (tagString != string.Empty)
+                if (!string.IsNullOrEmpty(tagString))
                     tagString += ", ";
                 tagString += tag;
             }
 
-            if (tagString != string.Empty)
+            if (!string.IsNullOrEmpty(tagString))
                 return Environment.NewLine + HttpUtility.HtmlEncode(containedInTags.Text + " " + tagString);
             return Environment.NewLine + HttpUtility.HtmlEncode(containedInNoTag.Text);
         }

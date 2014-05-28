@@ -180,6 +180,7 @@ namespace GitUI
                 {
                     return null;
                 }
+
                 var data = new object[SelectedRows.Count];
                 for (int i = 0; i < SelectedRows.Count; i++)
                 {
@@ -198,14 +199,17 @@ namespace GitUI
                 {
                     return null;
                 }
+
                 var data = new IComparable[SelectedRows.Count];
                 for (int i = 0; i < SelectedRows.Count; i++)
                 {
                     if (graphData[SelectedRows[i].Index] != null)
                         data[i] = graphData[SelectedRows[i].Index].Node.Id;
                 }
+
                 return data;
             }
+
             set
             {
                 lock (graphData)
@@ -465,24 +469,37 @@ namespace GitUI
                     return;
                 if (e.ColumnIndex != 0)
                     return;
-                var brush = (e.State & DataGridViewElementStates.Selected) == DataGridViewElementStates.Selected
-                                ? selectionBrush : new SolidBrush(Color.White);
-                e.Graphics.FillRectangle(brush, e.CellBounds);
-
-                Rectangle srcRect = DrawGraph(e.RowIndex);
-                if (!srcRect.IsEmpty)
+                if ((e.State & DataGridViewElementStates.Selected) == DataGridViewElementStates.Selected)
                 {
-                    e.Graphics.DrawImage
-                        (
-                            graphBitmap,
-                            e.CellBounds,
-                            srcRect,
-                            GraphicsUnit.Pixel
-                        );
+                    dataGrid_CellPainting(e, selectionBrush);
                 }
-
-                e.Handled = true;
+                else
+                {
+                    using (var brush = new SolidBrush(Color.White))
+                    {
+                        dataGrid_CellPainting(e, brush);
+                    }
+                } 
             }
+        }
+
+        private void dataGrid_CellPainting(DataGridViewCellPaintingEventArgs e, Brush brush)
+        {
+            e.Graphics.FillRectangle(brush, e.CellBounds);
+
+            Rectangle srcRect = DrawGraph(e.RowIndex);
+            if (!srcRect.IsEmpty)
+            {
+                e.Graphics.DrawImage
+                    (
+                        graphBitmap,
+                        e.CellBounds,
+                        srcRect,
+                        GraphicsUnit.Pixel
+                    );
+            }
+
+            e.Handled = true;
         }
 
         private void dataGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
@@ -970,13 +987,14 @@ namespace GitUI
             int top = wa.RenderingOrigin.Y + rowHeight / 2;
             var laneRect = new Rectangle(0, top, Width, rowHeight);
             Region oldClip = wa.Clip;
-            var newClip = new Region(laneRect);
-            newClip.Intersect(oldClip);
-            wa.Clip = newClip;
-            wa.Clear(Color.Transparent);
-
-            DrawItemLoop(wa, row, top);
-
+            using (var newClip = new Region(laneRect))
+            {
+                newClip.Intersect(oldClip);
+                wa.Clip = newClip;
+                wa.Clear(Color.Transparent);
+                
+                DrawItemLoop(wa, row, top);
+            }
             // Reset the clip region
             wa.Clip = oldClip;
             DrawGraphNode(wa, row);
@@ -994,46 +1012,66 @@ namespace GitUI
                 NODE_DIMENSION
                 );
 
-            Brush nodeBrush;
+            
             bool drawBorder = Settings.BranchBorders;
             List<Color> nodeColors = GetJunctionColors(row.Node.Ancestors);
             if (nodeColors.Count == 1)
             {
-                nodeBrush = new SolidBrush(nodeColors[0]);
-                if (nodeColors[0] == nonRelativeColor) drawBorder = false;
+                using (var nodeBrush = new SolidBrush(nodeColors[0]))
+                {   
+                    if (nodeColors[0] == nonRelativeColor) drawBorder = false;
+                    DrawGraphNode(wa, row, nodeRect, nodeBrush, drawBorder);
+                }
             }
             else
             {
-                nodeBrush = new LinearGradientBrush(nodeRect, nodeColors[0], nodeColors[1],
-                                                    LinearGradientMode.Horizontal);
-                if (nodeColors[0] == nonRelativeColor && nodeColors[1] == Color.LightGray) drawBorder = false;
+                using (var nodeBrush = new LinearGradientBrush(nodeRect, nodeColors[0], nodeColors[1], LinearGradientMode.Horizontal))
+                {
+                    if (nodeColors[0] == nonRelativeColor && nodeColors[1] == Color.LightGray) drawBorder = false;
+                    DrawGraphNode(wa, row, nodeRect, nodeBrush, drawBorder);
+                }
             }
+        }
 
+        private void DrawGraphNode(Graphics wa, Graph.ILaneRow row, Rectangle nodeRect, Brush nodeBrush, bool drawBorder)
+        {
             if (filterMode == FilterType.Highlight && row.Node.IsFiltered)
             {
                 Rectangle highlightRect = nodeRect;
                 highlightRect.Inflate(2, 3);
                 wa.FillRectangle(Brushes.Yellow, highlightRect);
-                wa.DrawRectangle(new Pen(Brushes.Black), highlightRect);
+                using (var pen = new Pen(Brushes.Black))
+                {
+                    wa.DrawRectangle(pen, highlightRect);
+                }
             }
 
             if (row.Node.Data == null)
             {
                 wa.FillEllipse(Brushes.White, nodeRect);
-                wa.DrawEllipse(new Pen(Color.Red, 2), nodeRect);
+                using (var pen = new Pen(Color.Red, 2))
+                {
+                    wa.DrawEllipse(pen, nodeRect);
+                }
             }
             else if (row.Node.IsActive)
             {
                 wa.FillRectangle(nodeBrush, nodeRect);
                 nodeRect.Inflate(1, 1);
-                wa.DrawRectangle(new Pen(Color.Black, 3), nodeRect);
+                using (var pen = new Pen(Color.Black, 3))
+                {
+                    wa.DrawRectangle(pen, nodeRect);
+                }
             }
             else if (row.Node.IsSpecial)
             {
                 wa.FillRectangle(nodeBrush, nodeRect);
                 if (drawBorder)
                 {
-                    wa.DrawRectangle(new Pen(Color.Black, 1), nodeRect);
+                    using (var pen = new Pen(Color.Black, 1))
+                    {
+                        wa.DrawRectangle(pen, nodeRect);
+                    }
                 }
             }
             else
@@ -1041,7 +1079,10 @@ namespace GitUI
                 wa.FillEllipse(nodeBrush, nodeRect);
                 if (drawBorder)
                 {
-                    wa.DrawEllipse(new Pen(Color.Black, 1), nodeRect);
+                    using (var pen = new Pen(Color.Black, 1))
+                    {
+                        wa.DrawEllipse(pen, nodeRect);
+                    }
                 }
             }
         }
